@@ -1,4 +1,4 @@
-FROM golang:1.20.10-alpine3.18 as builder
+FROM golang:1.22.1-alpine3.19 as builder
 
 ARG GO111MODULE=on
 ARG GOPROXY=https://goproxy.io
@@ -12,11 +12,11 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/re
 
 COPY . /app
 
-RUN go build -o simple-web-server .
+RUN CGO_ENABLED=0 GOOS=linux go build -o simple-web-server .
 
 #----------------------------------------------------------------
 
-FROM alpine:3.18.4
+FROM alpine:3.19
 
 LABEL .image.authors="ichaff1997@gmail.com"
 
