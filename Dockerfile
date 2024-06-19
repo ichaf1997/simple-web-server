@@ -12,7 +12,7 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/re
 
 COPY . /app
 
-RUN CGO_ENABLED=0 GOOS=linux go build -o simple-web-server .
+RUN go build -o simple-web-server .
 
 #----------------------------------------------------------------
 
